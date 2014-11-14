@@ -10,7 +10,20 @@
     function Enquiry($scope, $location) {
 	    /*jshint validthis: true */
         var vm = this; 
-        vm.ShowDateDiv = true;
+        //console.dir(selectedTask);
+        if (selectedTask.Name == undefined) {
+            vm.ShowDateDiv = true;
+
+        }
+        else {
+            vm.ShowSummaryDiv=true;
+            vm.Appointment={};
+            vm.Appointment.Client = selectedTask.Name;
+            vm.Appointment.Number = selectedTask.Number;
+            vm.Appointment.AppointmentDate = selectedTask.Date;
+            vm.Appointment.AppointmentTime = selectedTask.Time;
+            console.dir(vm.Appointment);
+        }
 
         vm.Next = function(){
             if (vm.ShowDateDiv) {

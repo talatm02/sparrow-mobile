@@ -1,17 +1,39 @@
 <ion-view title="Today's Visit">
-	<ion-header-bar animation="no-animation" class="bar-positive">
-				  	<h1 class="title">
-				  		Sparrow
-				  	</h1>					
-				</ion-header-bar>
-    <ion-content has-header="true" padding="true">
-       	<div class="list">
-			<div class="item">
-			   <a href="#/visit">New client visit</a>
-			</div>
-			<div class="item">
-			   <a href="#/enquiry">New enquiry</a>
-			</div>
-		</div>   
-    </ion-content>
+	<ion-header-bar animation="no-animation" class="bar-positive"style= "background-color: #4d7496 !important;
+	border-bottom: 3px solid #e36112 !important;">
+		<h1 class="title"style="font-weight:bold">
+			Sparrow
+		</h1>					
+	</ion-header-bar>
+    <ion-content has-header="true">
+        <!-- CLIENT LIST -->
+        <div>
+            <div class="list card" >
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                   
+                    <input type="text" placeholder="Search" ng-model="search">
+                </label>
+                <div class="list" >
+                    <a class="item" ng-click="db.Detail(Task);" ng-repeat="Task in db.Tasks | filter:search">
+                        {{Task.Name}}
+                        <p>{{Task.Date}}, {{Task.Time}}</p>
+                        {{Task.VisitType}}
+                        <span class="badge badge-assertive" ng-show="Task.VisitType=='ClientVisit'">V</span>
+                        <span class="badge badge-positive" ng-hide="Task.VisitType=='ClientVisit'">E</span>
+                      </a>                            
+                </div>                                                     
+            </div> 
+                                        
+        </div>              
+    </ion-content>       
+    <div class="tabs"style= "background-color: #fff !important;
+	border-top: 3px solid #e36112 !important;">
+  			<a href="#/visit"class="tab-item">
+    			Add client visit
+  			</a>
+  			<a href="#/enquiry" class="tab-item">
+    			Add enquiry
+  			</a>
+		</div>
 </ion-view> 

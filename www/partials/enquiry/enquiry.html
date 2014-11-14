@@ -1,6 +1,6 @@
  <ion-view>
             <ion-header-bar>
-                <a class="button button-icon ion-home" href="#" ng-show="task.ShowDateDiv">
+                <a class="button button-icon ion-home" href="#/dashboard" ng-show="task.ShowDateDiv">
                 </a>
                 <button class="button button-icon ion-ios7-arrow-back green-icon" ng-click="task.Back()" ng-show="!task.ShowDateDiv">
                 </button>
@@ -67,7 +67,7 @@ padding-left: 9px" type="text" name="Number" ng-model="task.Number" placeholder=
                         <div class="list">
                             <label class="item item-input" style="font-size: 35px;padding-right: 10px;">
                                 <i class="icon ion-ios7-person-outline"></i>
-                                <textarea style="line-height:31px;font-size:15px;padding-top: 13px;padding-left: 9px" placeholder="enter comment here">
+                                <textarea ng-model="task.Appointment.Comment" style="line-height:31px;font-size:15px;padding-top: 13px;padding-left: 9px" placeholder="enter comment here">
                                 </textarea>
                             </label>                            
                         </div>                                                     
@@ -90,8 +90,8 @@ padding-left: 9px" type="text" name="Number" ng-model="task.Number" placeholder=
                         <div class="item item-icon-right">
                             <a ng-click="task.ShowDate()">
                                 <p>Appointment tentative date-time</p>
-                                <h2>{{task.Appointment.Date}}</h2>                                 
-                                <p>{{task.Appointment.Time}}</p>
+                                <h2>{{task.Appointment.AppointmentDate}}</h2>                                 
+                                <p>{{task.Appointment.AppointmentTime}}</p>
                                 <i class="icon ion-edit green-icon"></i>
                             </a>
                         </div>                        

@@ -11,6 +11,8 @@
 	    /*jshint validthis: true */
         var vm = this; 
         
+        /*
+
         var URL = "http://localhost/sparrows/api" + "/Sparrow/getClient";
         var postData = {
                 "UserRole":"FrontOffice"
@@ -35,6 +37,21 @@
         for (var j = 0; j < 25; j++) {
             vm.TimeSlot.push(dateObj.add(30,'m').format('hh:mm A'));
         };
+        */
+
+        if (selectedTask.Name == undefined) {
+            vm.ShowDateDiv = true;
+
+        }
+        else {
+            vm.ShowSummaryDiv=true;
+            vm.Appointment={};
+            vm.Appointment.Client = selectedTask.Name;
+            vm.Appointment.Number = selectedTask.Number;
+            vm.Appointment.AppointmentDate = selectedTask.Date;
+            vm.Appointment.AppointmentTime = selectedTask.Time;
+            console.dir(vm.Appointment);
+        }
         
         vm.Next = function()
         {               

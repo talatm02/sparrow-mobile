@@ -39,22 +39,16 @@ angular.module('myapp', ['ionic'])
         templateUrl: "partials/dashboard/dashboard.html"
     })
 
-     .state('visit', {
-      url: "/visit",
+     .state('ClientVisit', {
+      url: "/ClientVisit",
       controller:"Visit as task",
       templateUrl: "partials/visit/visit.html"
     })
 
-     .state('enquiry', {
-      url: "/enquiry",
+     .state('Enquiry', {
+      url: "/Enquiry",
       controller:"Enquiry as task",
       templateUrl: "partials/enquiry/enquiry.html"
-    })
-
-     .state('tasks', {
-      url: "/tasks",
-      controller:"Tasks as task",
-      templateUrl: "partials/tasks/tasks.html"
     });
 
   // if none of the above states are matched, use this as the fallback
@@ -62,4 +56,4 @@ angular.module('myapp', ['ionic'])
 
 })
 
-.value('completeURL','http://localhost/sparrows/api');
+var selectedTask = {};
