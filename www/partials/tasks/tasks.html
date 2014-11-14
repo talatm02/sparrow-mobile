@@ -1,0 +1,62 @@
+ <ion-view>
+            <ion-header-bar>
+                <a class="button button-icon ion-home green-icon" href="#" ng-show="task.ShowClientDiv">
+                </a>
+                <button class="button button-icon ion-ios7-arrow-back green-icon" ng-click="task.Back()" ng-show="!task.ShowClientDiv">
+                </button>
+                <p class="title">Appointment</p>
+                <button class="button button-icon green-btn-text" ng-show="!task.ShowSummaryDiv" ng-click="task.Next()">Next
+                </button> 
+            </ion-header-bar>
+            <ion-content has-header="true">
+                <!-- CLIENT LIST -->
+                <div ng-show="task.ShowTasksDiv">
+                    <div class="list card" >
+                        <label class="item item-input">
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <input type="text" placeholder="Search" ng-model="search">
+                        </label>
+                        <div class="list">
+                            <a class="item" ng-click="task.selectTask(Task)" ng-repeat="Task in task.Tasks | filter:search">
+                                {{Task.Name}}
+                                <p>{{Task.Date}}, {{Task.Time}}</p>
+                              </a>                            
+                        </div>                                                     
+                    </div>                                    
+                </div> 
+                <!-- SUMMARY --> 
+                <div ng-show="task.ShowSummaryDiv">
+                    <div class="card">
+                        <div class="item item-icon-right">
+                            <a ng-click="task.ShowProvider()">
+                                <p>Client details</p>
+                                <h2>{{task.editTask.Name}}</h2>                               
+                                <p ng-show="task.editTask.Name == undefined">
+                                    Not Selected
+                                </p>
+                                <p>{{task.editTask.Address}}</p>
+                                <i class="icon ion-edit green-icon"></i>
+                            </a>   
+                        </div>
+                        <div class="item item-icon-right">
+                            <a ng-click="task.ShowDate()">
+                                <p>Appointment date-time</p>
+                                <h2>{{task.editTask.Date}}</h2>                                 
+                                <p>{{task.editTask.Time}}</p>
+                                <i class="icon ion-edit green-icon"></i>
+                            </a>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col col-20">
+                            <a class="button button-block" ng-click="task.Cancel()">X</a>
+                        </div>
+                        <div class="col">                              
+                            <button class="button button-block apt-btn" ng-click="task.Done()">
+                                DONE
+                            </button>
+                        </div>
+                    </div>                    
+                </div>             
+            </ion-content>       
+        </ion-view> 
