@@ -47,7 +47,7 @@ angular.module('myapp', ['ionic'])
 
      .state('Enquiry', {
       url: "/Enquiry",
-      controller:"Enquiry as task",
+      controller:"Enquiry as enquiry",
       templateUrl: "partials/enquiry/enquiry.html"
     });
 

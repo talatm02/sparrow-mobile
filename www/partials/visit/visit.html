@@ -1,11 +1,13 @@
  <ion-view>
-            <ion-header-bar>
-                <a class="button button-icon ion-home green-icon" href="#" ng-show="task.ShowClientDiv">
+            <ion-header-bar style= "background-color: #4d7496 !important;
+    border-bottom: 3px solid #e36112 !important;">
+                <a class="button button-icon ion-home green-icon" style="color:#fff" href="#/dashboard" ng-show="task.ShowClientDiv">
                 </a>
-                <button class="button button-icon ion-ios7-arrow-back green-icon" ng-click="task.Back()" ng-show="!task.ShowClientDiv">
-                </button>
-                <p class="title">Appointment</p>
-                <button class="button button-icon green-btn-text" ng-show="!task.ShowSummaryDiv" ng-click="task.Next()">Next
+                <a class="button button-icon ion-android-arrow-back" style="color:#fff" ng-click="task.Back()" ng-show="!task.ShowClientDiv && !task.ShowSummaryDiv">
+
+                </a>
+                <p class="title">Appointment</p> 
+                <button class="button button-icon green-btn-text" style="color:#fff;"ng-show="!task.ShowSummaryDiv" ng-click="task.Next()">Next
                 </button> 
             </ion-header-bar>
             <ion-content has-header="true">
@@ -70,7 +72,7 @@
                                     Not Selected
                                 </p>
                                 <p>{{task.Appointment.Address}}</p>
-                                <i class="icon ion-edit green-icon"></i>
+                                <i ng-click="task.ShowClientFun()" class="icon ion-edit green-icon"></i>
                             </a>   
                         </div>
                         <div class="item item-icon-right">
@@ -78,13 +80,13 @@
                                 <p>Appointment tentative date-time</p>
                                 <h2>{{task.Appointment.AppointmentDate}}</h2>                                 
                                 <p>{{task.Appointment.AppointmentTime}}</p>
-                                <i class="icon ion-edit green-icon"></i>
+                                <i ng-click="task.ShowDateFun()" class="icon ion-edit green-icon"></i>
                             </a>
                         </div>                        
                     </div>
                     <div class="row">
-                        <div class="col col-20">
-                            <a class="button button-block" ng-click="task.Cancel()">X</a>
+                        <div class="col">
+                            <a class="button button-block" ng-click="task.Cancel()">Cancel</a>
                         </div>
                         <div class="col">                              
                             <button class="button button-block apt-btn" ng-click="task.Done()">

@@ -30,9 +30,10 @@
         	selectedTask.Name = object.Name;
         	selectedTask.Number = object.Number;
         	selectedTask.Comment = object.Comment;*/
-
+            
         	$location.path('/'+ object.VisitType);
         }
+
     }
 })();
 

@@ -1,16 +1,19 @@
  <ion-view>
-            <ion-header-bar>
-                <a class="button button-icon ion-home" href="#/dashboard" ng-show="task.ShowDateDiv">
+            <ion-header-bar style= "background-color: #4d7496 !important;
+    border-bottom: 3px solid #e36112 !important;">
+                <a class="button button-icon ion-home"  style="color:#fff;" href="#/dashboard" ng-show="enquiry.ShowDateDiv">
                 </a>
-                <button class="button button-icon ion-ios7-arrow-back green-icon" ng-click="task.Back()" ng-show="!task.ShowDateDiv">
-                </button>
+                <a class="button button-icon ion-android-arrow-back green-icon" style="color:#fff;" ng-click="enquiry.Back()" ng-show="!enquiry.ShowDateDiv && !enquiry.ShowSummaryDiv">
+                </a>
                 <p class="title">Appointment</p>
-                <button class="button button-icon green-btn-text" ng-show="!task.ShowSummaryDiv" ng-click="task.Next()">Next
+                <button class="button button-icon green-btn-text" style="color:#fff;" ng-show="!enquiry.ShowSummaryDiv" ng-click="enquiry.Next()">Next
                 </button> 
+
+
             </ion-header-bar>
             <ion-content has-header="true">
                 <!-- DATE TIME --> 
-                <div ng-show="task.ShowDateDiv">
+                <div ng-show="enquiry.ShowDateDiv">
                     <div class="list card">
                         <div class="item">
                             <center>
@@ -21,18 +24,18 @@
                         <label class="item item-select">
                             <i class="icon ion-ios7-calendar-outline green-icon" style="font-size: 35px;padding-right: 10px;"></i>
 
-                            <select style="line-height:31px;font-size:20px;"  ng-model="task.Appointment.Date" ng-options="Date for Date in task.Dates" ng-init="task.Appointment.Date = task.Dates[0]">
+                            <select style="line-height:31px;font-size:20px;"  ng-model="enquiry.Appointment.Date" ng-options="Date for Date in enquiry.Dates" ng-init="enquiry.Appointment.Date = enquiry.Dates[0]">
                             </select>                                    
                         </label>
                         <label class="item item-select">
                             <i class="icon ion-ios7-stopwatch-outline green-icon" style="font-size: 35px;padding-right: 10px;"></i>
-                            <select style="line-height:31px;font-size:20px;"  ng-model="task.Appointment.Time" ng-selected='0' ng-options="Time for Time in task.TimeSlot" ng-init="task.Appointment.Time = task.TimeSlot[0]">
+                            <select style="line-height:31px;font-size:20px;"  ng-model="enquiry.Appointment.Time" ng-selected='0' ng-options="Time for Time in enquiry.TimeSlot" ng-init="enquiry.Appointment.Time = enquiry.TimeSlot[0]">
                             </select>
                         </label>                                                    
                     </div>                                               
                 </div>
                 <!-- CLIENT -->
-                <div ng-show="task.ShowClientDiv">
+                <div ng-show="enquiry.ShowClientDiv">
                     <div class="list card" >
                         <div class="item">
                             <center>
@@ -44,19 +47,19 @@
                             <label class="item item-input" style="font-size: 35px;padding-right: 10px;">
                                 <i class="icon ion-ios7-person-outline orangecolor"></i>
                                 <input style="line-height:31px;font-size:15px;padding-top: 13px;
-padding-left: 9px" type="text" name="Name" ng-model="task.Name" placeholder="Name">
+padding-left: 9px" type="text" name="Name" ng-model="enquiry.Appointment.Client" placeholder="Name">
                             </label> 
 
                             <label class="item item-input" style="font-size: 35px;padding-right: 10px;">
-                                <i class="icon ion-ios7-locked-outline orangecolor"></i>
+                                <i class="icon ion-ios7-telephone-outline orangecolor"></i>
                                 <input style="line-height:31px;font-size:15px;padding-top: 13px;
-padding-left: 9px" type="text" name="Number" ng-model="task.Number" placeholder="Number">
+padding-left: 9px" type="text" name="Number" ng-model="enquiry.Appointment.Number" placeholder="Number">
                             </label>   
                         </div>                                                     
                     </div>                                    
                 </div>
-                <!-- CLIENT -->
-                <div ng-show="task.ShowCommentDiv">
+                <!-- COMMENT -->
+                <div ng-show="enquiry.ShowCommentDiv">
                     <div class="list card" >
                         <div class="item">
                             <center>
@@ -66,42 +69,48 @@ padding-left: 9px" type="text" name="Number" ng-model="task.Number" placeholder=
                         </div>                       
                         <div class="list">
                             <label class="item item-input" style="font-size: 35px;padding-right: 10px;">
-                                <i class="icon ion-ios7-person-outline"></i>
-                                <textarea ng-model="task.Appointment.Comment" style="line-height:31px;font-size:15px;padding-top: 13px;padding-left: 9px" placeholder="enter comment here">
+                                <textarea ng-model="enquiry.Appointment.Comment" style="line-height:31px;font-size:15px;padding-top: 13px;padding-left: 9px" placeholder="enter comment here">
                                 </textarea>
                             </label>                            
                         </div>                                                     
                     </div>                                    
                 </div> 
                 <!-- SUMMARY --> 
-                <div ng-show="task.ShowSummaryDiv">
+                <div ng-show="enquiry.ShowSummaryDiv">
                     <div class="card">
                         <div class="item item-icon-right">
-                            <a ng-click="task.ShowProvider()">
+                            <span>  <!-- ng-click="task.ShowProvider()"> -->
                                 <p>Client details</p>
-                                <h2>{{task.Appointment.Client}}</h2>                               
-                                <p ng-show="task.Appointment.Client == undefined">
+                                <h2>{{enquiry.Appointment.Client}}</h2>                               
+                                <p ng-show="enquiry.Appointment.Client == undefined">
                                     Not Selected
                                 </p>
-                                <p>{{task.Appointment.Number}}</p>
-                                <i class="icon ion-edit green-icon"></i>
-                            </a>   
+                                <p>{{enquiry.Appointment.Number}}</p>
+                                <i ng-click="enquiry.ShowClientFun()"class="icon ion-edit green-icon"></i>
+                            </span>   
                         </div>
                         <div class="item item-icon-right">
-                            <a ng-click="task.ShowDate()">
+                            <a ng-click="enquiry.ShowDate()">
                                 <p>Appointment tentative date-time</p>
-                                <h2>{{task.Appointment.AppointmentDate}}</h2>                                 
-                                <p>{{task.Appointment.AppointmentTime}}</p>
-                                <i class="icon ion-edit green-icon"></i>
+                                <h2>{{enquiry.Appointment.AppointmentDate}}</h2>                                 
+                                <p>{{enquiry.Appointment.AppointmentTime}}</p>
+                                <i ng-click="enquiry.ShowDateFun()" class="icon ion-edit green-icon"></i>
+                            </a>
+                        </div>
+                        <div class="item item-icon-right">
+                            <a ng-click="enquiry.ShowComment()">
+                                <p>Comment</p>
+                                <p>{{enquiry.Appointment.AppointmentComment}}</p>
+                                <i ng-click="enquiry.ShowCommentFun()"class="icon ion-edit green-icon"></i>
                             </a>
                         </div>                        
                     </div>
                     <div class="row">
-                        <div class="col col-20">
-                            <a class="button button-block" ng-click="task.Cancel()">X</a>
+                        <div class="col">
+                            <a class="button button-block" ng-click="enquiry.Cancel()">Cancel</a>
                         </div>
                         <div class="col">                              
-                            <button class="button button-block apt-btn" ng-click="task.Done()">
+                            <button class="button button-block apt-btn" ng-click="enquiry.Done()">
                                 DONE
                             </button>
                         </div>

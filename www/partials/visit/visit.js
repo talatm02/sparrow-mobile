@@ -11,7 +11,6 @@
 	    /*jshint validthis: true */
         var vm = this; 
         
-        /*
 
         var URL = "http://localhost/sparrows/api" + "/Sparrow/getClient";
         var postData = {
@@ -21,11 +20,11 @@
             vm.Clients = data.clientList;            
         });
 
-        vm.ShowClientDiv = true;
         vm.Dates = [];
         vm.TimeSlot = [];
         var dateObj = moment().startOf('day');      
-        
+        vm.ShowClientDiv = true;
+
         for(var i=0;i<20;i++)
         {
             if (i==0) 
@@ -37,14 +36,13 @@
         for (var j = 0; j < 25; j++) {
             vm.TimeSlot.push(dateObj.add(30,'m').format('hh:mm A'));
         };
-        */
 
         if (selectedTask.Name == undefined) {
-            vm.ShowDateDiv = true;
 
         }
         else {
             vm.ShowSummaryDiv=true;
+            vm.ShowClientDiv = false;
             vm.Appointment={};
             vm.Appointment.Client = selectedTask.Name;
             vm.Appointment.Number = selectedTask.Number;
@@ -65,7 +63,6 @@
                 vm.ShowDateDiv = false;
                 vm.ShowSummaryDiv = true;           
             }             
-
             else if(vm.ShowSummaryDiv == true)
             {
                 Appointment.apiNewAppointment();    
@@ -88,7 +85,8 @@
 
         vm.Done = function()
         {
-            var time = moment().set(vm.Appointment.Time).format('hh:mm');
+            $location.path('/dashboard');
+            /*var time = moment().set(vm.Appointment.Time).format('hh:mm');
             var postData = {
                 UserRole: "FrontOffice",
                 Date: moment(vm.Appointment.Date,'ddd,MMM Do YY').format('YYYY-MM-DD'),
@@ -104,12 +102,23 @@
                 vm.Clients = data.clientList;            
             });*/
         }
-
+        vm.Cancel = function()
+        {
+            $location.path('/dashboard');
+        }
         vm.selectClient = function(object)
         {
             vm.Appointment.ID = object.ID;
             vm.Appointment.Number = object.Number;
         }
 
+        vm.ShowClientFun = function(){
+            vm.ShowClientDiv = true;
+            vm.ShowSummaryDiv = false;
+        }
+        vm.ShowDateFun = function(){
+            vm.ShowDateDiv = true;
+            vm.ShowSummaryDiv = false;
+        }
     }
 })();
