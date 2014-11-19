@@ -1,10 +1,22 @@
-<ion-view title="Today's Visit">
-	<ion-header-bar animation="no-animation" class="bar-positive"style= "background-color: #4d7496 !important;
-	border-bottom: 3px solid #e36112 !important;">
-		<h1 class="title"style="font-weight:bold">
-			Sparrow
-		</h1>					
+<ion-view>
+	<ion-header-bar animation="no-animation" class="bar-positive">
+		<h1 class="title">
+			Today's Visit
+		</h1>
+         <a class="button button-icon icon ion-log-out" href="#/login"></a>					
 	</ion-header-bar>
+    <div class="tabs-striped tabs-background-dark tabs-color-assertive ">
+        <div class="tabs" >
+            <a href="#/ClientVisit"ng-class="getActiveClass('ClientVisit')" class="tab-item" style="color:#fff !important; 
+    font-weight:bold !important;">
+                Add client visit
+            </a>
+            <a href="#/Enquiry" ng-class="getActiveClass('Enquiry')" class="tab-item" style="color:#fff !important; 
+    font-weight:bold !important;">
+                Add enquiry
+            </a>
+        </div>
+    </div>    
     <ion-content has-header="true">
         <!-- CLIENT LIST -->
         <div>
@@ -27,13 +39,5 @@
                                         
         </div>              
     </ion-content>       
-    <div class="tabs"style= "background-color: #fff !important;
-	border-top: 3px solid #e36112 !important;">
-  			<a href="#/ClientVisit"class="tab-item">
-    			Add client visit
-  			</a>
-  			<a href="#/Enquiry" class="tab-item">
-    			Add enquiry
-  			</a>
-		</div>
+    
 </ion-view> 

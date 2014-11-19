@@ -16,7 +16,7 @@
         vm.Dates = [];
         vm.TimeSlot = [];
         var dateObj = moment().startOf('day');
-
+        vm.Header = "Date & time";
         for(var i=0;i<20;i++)
         {
             if (i==0) 
@@ -32,7 +32,8 @@
         //console.dir(selectedTask);
         if (selectedTask.Name == undefined) {
             vm.ShowDateDiv = true;
-
+            vm.Header = "Date & time";
+            
         }
         else {
             vm.ShowSummaryDiv=true;
@@ -41,52 +42,89 @@
             vm.Appointment.Number = selectedTask.Number;
             vm.Appointment.AppointmentDate = selectedTask.Date;
             vm.Appointment.AppointmentTime = selectedTask.Time;
-            vm.Appointment.AppointmentComment = selectedTask.Comment;            
+            vm.Appointment.AppointmentComment = selectedTask.Comment;
+            vm.Header = "Summary";            
         }
+        
+        
 
         vm.Next = function(){
+
             console.dir(selectedTask.Name);
-            if (vm.ShowDateDiv) {
+            if (vm.ShowDateDiv == true) {
                 //Edit for Existing Task
-                
+                vm.Header = "Date & time";
+
                 if (selectedTask.Name != undefined) {
                     vm.ShowSummaryDiv=true;
                     vm.ShowDateDiv=false;
+                    vm.Header = "Summary";
                 }
                 else{
                     vm.ShowDateDiv=false;
                     vm.ShowClientDiv=true;
+                     vm.Header = "Client";
                 }
             }
-            else if (vm.ShowClientDiv) {
+            else if (vm.ShowClientDiv == true) {
 
-                if (selectedTask.Name != undefined) {
-                    vm.ShowSummaryDiv=true;
-                    vm.ShowClientDiv=false;
-                }
-                else{
-                    vm.ShowCommentDiv=true;
-                    vm.ShowClientDiv=false;
-                }
+                    vm.Header = "Client";
+
+                    if (selectedTask.Name != undefined) {
+                        vm.ShowSummaryDiv=true;
+                        vm.ShowClientDiv=false;
+                         vm.Header = "Summary";
+                    }
+                    else{
+                        vm.ShowCommentDiv=true;
+                        vm.ShowClientDiv=false;
+                         vm.Header = "Comment";
+                    }
             }
             else if (vm.ShowCommentDiv) {
                 vm.ShowSummaryDiv=true;
                 vm.ShowCommentDiv=false;
+                vm.Header = "Summary";
+
             }
         }
 
         vm.Back = function(){
-            if (vm.ShowClientDiv) {
-                vm.ShowDateDiv=true;
-                vm.ShowClientDiv=false;
+            if (vm.ShowClientDiv == true) {
+                vm.Header = "Client";
+
+                if (selectedTask.Name != undefined) {
+                    vm.ShowSummaryDiv=true;
+                    vm.ShowClientDiv=false;
+                    vm.Header = "Summary";
+                }
+                else{
+                    vm.ShowDateDiv=true;
+                    vm.ShowClientDiv=false;
+                    vm.Header = "Date & time";
+                }
+                
             }
-            else if (vm.ShowCommentDiv) { 
-                vm.ShowClientDiv=true;
-                vm.ShowCommentDiv=false;
+            else if (vm.ShowCommentDiv == true) { 
+                 vm.Header = "Comment";
+
+                if (selectedTask.Name != undefined) {
+                    vm.ShowSummaryDiv=true;
+                    vm.ShowCommentDiv=false;
+                    vm.Header = "Summary";
+                }
+                else{
+                    vm.ShowClientDiv=true;
+                    vm.ShowCommentDiv=false;
+                    vm.Header = "Client";
+                }
+                
             }
-            else if (vm.ShowSummaryDiv) {
+            else if (vm.ShowSummaryDiv == true) {
+
                 vm.ShowCommentDiv=true;
                 vm.ShowSummaryDiv=false;
+                vm.Header = "Comment";
             }
         }
 
@@ -99,14 +137,17 @@
         vm.ShowDateFun = function(){
             vm.ShowDateDiv = true;
             vm.ShowSummaryDiv = false;
+            vm.Header = "Date & time";
         }
         vm.ShowClientFun = function(){
             vm.ShowClientDiv = true;
             vm.ShowSummaryDiv = false;
+            vm.Header = "Client";
         }
         vm.ShowCommentFun = function(){
             vm.ShowCommentDiv=true;
             vm.ShowSummaryDiv = false;
+            vm.Header = "Comment";
         }
     }
 })();

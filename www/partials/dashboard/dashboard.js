@@ -15,13 +15,18 @@
         	'border-left':'5px solid #4d7496'
         };
 
+        vm.logout = function(){
+            $location.path('/login')
+        }
+
         vm.visitStyle = {
         	'border-left':'5px solid #e36112'
         };
         taskservice.apiGetTasks().then(function(data){
             vm.Tasks = data.Response;
         })
-
+        
+        
         vm.Detail = function(object){
         	selectedTask = {};
         	selectedTask = object;
@@ -33,7 +38,7 @@
             
         	$location.path('/'+ object.VisitType);
         }
-
+        
     }
 })();
 
